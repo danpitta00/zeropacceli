@@ -27,7 +27,8 @@ body{font-family:"Satoshi",sans-serif;color:var(--off);-webkit-font-smoothing:an
 body::before{content:"";position:fixed;inset:0;background:rgba(5,4,4,.82)}
 
 /* palco 1080x1920 */
-.stage{position:absolute;left:50%;top:0;width:1080px;height:var(--h,1920px);transform-origin:top center;transform:translateX(-50%) scale(var(--k,1));overflow:hidden;background:#0d0b0b url("assets/parede.jpg") center/cover}
+.vp{position:fixed;left:0;top:0;width:100%;height:100%;overflow:hidden}
+.stage{position:absolute;left:0;top:0;width:1080px;height:var(--h,1920px);transform-origin:0 0;transform:translateX(var(--x,0px)) scale(var(--k,1));overflow:hidden;background:#0d0b0b url("assets/parede.jpg") center/cover}
 .stage::before{content:"";position:absolute;inset:0;background:rgba(10,8,8,.62);z-index:0}
 .cv{left:0;top:var(--o,0px);width:1080px;height:1920px}
 .cv > *{position:absolute}
@@ -111,7 +112,7 @@ body::before{content:"";position:fixed;inset:0;background:rgba(5,4,4,.82)}
 </style>
 </head>
 <body>
-<main class="stage" id="stage"><div class="cv">
+<div class="vp"><main class="stage" id="stage"><div class="cv">
   <div class="glow"></div>
   <div class="big b1"><span>ZERO</span></div>
   <div class="big b2"><span>PACCELI</span></div>
@@ -154,11 +155,11 @@ body::before{content:"";position:fixed;inset:0;background:rgba(5,4,4,.82)}
 
   </div><div class="vig"></div><div class="grain"></div>
   <div class="frame"><span class="tl"><b>✦</b> Zero Pacceli</span><span class="tr">Links</span></div>
-</main>
+</main></div>
 <script>
 // encaixa o palco 1080x1920 na tela
 const st=document.getElementById('stage');
-function fit(){const W=innerWidth,Hh=innerHeight;let k,H=1920;if(Hh/W>=1920/1080){k=W/1080;H=Hh/k}else{k=Hh/1920}st.style.setProperty("--k",k);st.style.setProperty("--h",H+"px");st.style.setProperty("--o",((H-1920)/2)+"px")}
+function fit(){const W=document.documentElement.clientWidth,Hh=document.documentElement.clientHeight;let k,H=1920;if(Hh/W>=1920/1080){k=W/1080;H=Hh/k}else{k=Hh/1920}st.style.setProperty("--k",k);st.style.setProperty("--x",((W-1080*k)/2)+"px");st.style.setProperty("--h",H+"px");st.style.setProperty("--o",((H-1920)/2)+"px")}
 addEventListener('resize',fit);fit();
 </script>
 </body>
