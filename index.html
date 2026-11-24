@@ -30,9 +30,9 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .stage{position:relative;width:1080px;height:1920px;flex:none;transform:scale(var(--k,1));overflow:hidden;background:none}
 
 .stage > *{position:absolute}
-.grain{position:fixed!important;inset:-50%;background:url("assets/grain.png");opacity:.1;mix-blend-mode:overlay;pointer-events:none;z-index:60;animation:grain 1s steps(6) infinite}
+.grain{position:fixed;inset:-50%;background:url("assets/grain.png");opacity:.1;mix-blend-mode:overlay;pointer-events:none;z-index:60;animation:grain 1s steps(6) infinite}
 @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-2%,3%)}80%{transform:translate(4%,1%)}}
-.vig{position:fixed!important;inset:0;background:radial-gradient(ellipse at 50% 40%,transparent 48%,rgba(0,0,0,.7));pointer-events:none;z-index:59}
+.vig{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 40%,transparent 48%,rgba(0,0,0,.7));pointer-events:none;z-index:59}
 
 /* moldura (igual ao kit) */
 .frame{inset:0;z-index:62;pointer-events:none;font-family:"Archivo";font-stretch:125%;font-weight:800;font-size:22px;letter-spacing:.3em;text-transform:uppercase;color:rgba(237,232,225,.8);animation:fade .9s .2s both}
@@ -108,6 +108,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 </style>
 </head>
 <body>
+<div class="vig"></div><div class="grain"></div>
 <main class="stage" id="stage">
   <div class="glow"></div>
   <div class="big b1"><span>ZERO</span></div>
@@ -149,7 +150,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
     <a href="mailto:zero.contato@gmail.com" aria-label="E-mail"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#C1121F"/><rect x="6" y="8" width="12" height="8.5" rx="1" fill="none" stroke="#EDE8E1" stroke-width="1.5"/><path d="M6.5 8.5l5.5 4.2 5.5-4.2" fill="none" stroke="#EDE8E1" stroke-width="1.5"/></svg></a>
   </nav>
 
-  <div class="vig"></div><div class="grain"></div>
   <div class="frame"><span class="tl"><b>✦</b> Zero Pacceli</span><span class="tr">Links</span></div>
 </main>
 <script>
