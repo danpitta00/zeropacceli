@@ -22,17 +22,20 @@
 @font-face{font-family:"Satoshi";src:url("assets/Satoshi-Variable.woff2") format("woff2");font-weight:300 900;font-display:block}
 :root{--ink:#0D0B0B;--red:#C1121F;--red-hi:#E0242F;--off:#EDE8E1;--mute:#A79F97;--ease:cubic-bezier(.16,1,.3,1);--pop:cubic-bezier(.34,1.56,.64,1)}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:none}
-body{font-family:"Satoshi",sans-serif;color:var(--off);-webkit-font-smoothing:antialiased;display:grid;place-items:center}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 30%,rgba(10,8,8,.55),rgba(10,8,8,.8))}
+html,body{height:100%;overflow:hidden;background:#0d0b0b url("assets/parede.jpg") center/cover}
+body{font-family:"Satoshi",sans-serif;color:var(--off);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;background:rgba(5,4,4,.82)}
 
 /* palco 1080x1920 */
-.stage{position:relative;width:1080px;height:1920px;flex:none;transform:scale(var(--k,1));overflow:hidden;background:none}
+.stage{position:absolute;left:50%;top:0;width:1080px;height:var(--h,1920px);transform-origin:top center;transform:translateX(-50%) scale(var(--k,1));overflow:hidden;background:#0d0b0b url("assets/parede.jpg") center/cover}
+.stage::before{content:"";position:absolute;inset:0;background:rgba(10,8,8,.62);z-index:0}
+.cv{left:0;top:var(--o,0px);width:1080px;height:1920px}
+.cv > *{position:absolute}
 
 .stage > *{position:absolute}
-.grain{position:fixed;inset:-50%;background:url("assets/grain.png");opacity:.1;mix-blend-mode:overlay;pointer-events:none;z-index:60;animation:grain 1s steps(6) infinite}
+.grain{inset:-50%;background:url("assets/grain.png");opacity:.1;mix-blend-mode:overlay;pointer-events:none;z-index:60;animation:grain 1s steps(6) infinite}
 @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-2%,3%)}80%{transform:translate(4%,1%)}}
-.vig{position:fixed;inset:0;background:radial-gradient(ellipse at 50% 40%,transparent 48%,rgba(0,0,0,.7));pointer-events:none;z-index:59}
+.vig{inset:0;background:radial-gradient(ellipse at 50% 40%,transparent 48%,rgba(0,0,0,.7));pointer-events:none;z-index:59}
 
 /* moldura (igual ao kit) */
 .frame{inset:0;z-index:62;pointer-events:none;font-family:"Archivo";font-stretch:125%;font-weight:800;font-size:22px;letter-spacing:.3em;text-transform:uppercase;color:rgba(237,232,225,.8);animation:fade .9s .2s both}
@@ -108,8 +111,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 </style>
 </head>
 <body>
-<div class="vig"></div><div class="grain"></div>
-<main class="stage" id="stage">
+<main class="stage" id="stage"><div class="cv">
   <div class="glow"></div>
   <div class="big b1"><span>ZERO</span></div>
   <div class="big b2"><span>PACCELI</span></div>
@@ -150,12 +152,13 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
     <a href="mailto:zero.contato@gmail.com" aria-label="E-mail"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#C1121F"/><rect x="6" y="8" width="12" height="8.5" rx="1" fill="none" stroke="#EDE8E1" stroke-width="1.5"/><path d="M6.5 8.5l5.5 4.2 5.5-4.2" fill="none" stroke="#EDE8E1" stroke-width="1.5"/></svg></a>
   </nav>
 
+  </div><div class="vig"></div><div class="grain"></div>
   <div class="frame"><span class="tl"><b>✦</b> Zero Pacceli</span><span class="tr">Links</span></div>
 </main>
 <script>
 // encaixa o palco 1080x1920 na tela
 const st=document.getElementById('stage');
-function fit(){st.style.setProperty('--k',Math.min(innerWidth/1080,innerHeight/1920));st.style.margin=(-(1-Math.min(innerWidth/1080,innerHeight/1920))*1920/2)+'px '+(-(1-Math.min(innerWidth/1080,innerHeight/1920))*1080/2)+'px'}
+function fit(){const W=innerWidth,Hh=innerHeight;let k,H=1920;if(Hh/W>=1920/1080){k=W/1080;H=Hh/k}else{k=Hh/1920}st.style.setProperty("--k",k);st.style.setProperty("--h",H+"px");st.style.setProperty("--o",((H-1920)/2)+"px")}
 addEventListener('resize',fit);fit();
 </script>
 </body>
